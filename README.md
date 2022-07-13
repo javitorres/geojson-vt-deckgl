@@ -1,2 +1,4 @@
 # geojson-vt-deckgl
-Created with CodeSandbox
+
+Example on using geojson-vt to stream heavy geojsons (hundreds of MB) to Deck.gl
+

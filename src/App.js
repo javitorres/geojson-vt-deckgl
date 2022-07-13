@@ -1,5 +1,4 @@
-import "./styles.css";
-import "./styles.css";
+// import "./src/styles.css";
 import React, { useEffect, useState, useCallback } from "react";
 import { render } from "react-dom";
 import DeckGL from "@deck.gl/react";
@@ -9,14 +8,20 @@ import vtpbf from "vt-pbf";
 import { StaticMap } from "react-map-gl";
 
 import { load } from "@loaders.gl/core";
+import { DataFilterExtension } from '@deck.gl/extensions';
 
 const DATA_URL =
   "https://gist.githubusercontent.com/PapaEcureuil/74a620d41402e989f0e725f025e7cbd3/raw/4d7e0ac1f6be1adc1e8fbca339ed51fe99600581/ny.json";
 
+
+// const DATA_URL = "./data/fire_db.geojson"
+
+// const DATA_URL = "ny.geojson"
+
 const INITIAL_VIEW_STATE = {
   longitude: -74,
   latitude: 40.72,
-  zoom: 10,
+  zoom: 9,
   minZoom: 0,
   maxZoom: 23
 };
@@ -32,7 +37,10 @@ export default function App({ data_url = DATA_URL }) {
 
   useEffect(() => {
     fetch(data_url)
-      .then((r) => r.json())
+      .then((r) => {
+        console.log(r)
+        return r.json()
+      })
       .then((d) => {
         const index = geojsonvt(d, {
           maxZoom: MAX_ZOOM,
@@ -70,16 +78,19 @@ export default function App({ data_url = DATA_URL }) {
       // extruded: true,
       pickable: true,
       filled: true,
-      // getLineColor: [255,0,100],
-      lineWidthMinPixels: 5,
+      lineWidthMinPixels: 1,
       getLineColor: [0, 0, 0, 100],
       getFillColor: [255, 0, 0, 150],
       stroked: true,
-      onHover: (e) => console.log("hovered", e)
+      opacity: 0.5,
+      // onHover: (e) => console.log("hovered", e),
+      // getFilterValue: f => f.properties.YEAR,
+      // filterRange: [2015, 2017],
+      // extensions: [new DataFilterExtension({ filterSize: 1 })],
     });
 
   return (
-    <DeckGL
+    <DeckGL       
       layers={[layer]}
       initialViewState={INITIAL_VIEW_STATE}
       controller={true}
