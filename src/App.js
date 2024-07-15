@@ -11,7 +11,7 @@ import { load } from "@loaders.gl/core";
 import { DataFilterExtension } from '@deck.gl/extensions';
 
 const DATA_URL =
-  "https://gist.githubusercontent.com/PapaEcureuil/74a620d41402e989f0e725f025e7cbd3/raw/4d7e0ac1f6be1adc1e8fbca339ed51fe99600581/ny.json";
+  "https://gist.githubusercontent.com/nuayge/74a620d41402e989f0e725f025e7cbd3/raw/4d7e0ac1f6be1adc1e8fbca339ed51fe99600581/ny.json";
 
 
 // const DATA_URL = "./data/fire_db.geojson"
